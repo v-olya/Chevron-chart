@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { baseHSL } from '../constants.js';
 
 export function Checkbox({isChecked, index, setParentState, parentState}) {
   const [checked, setChecked] = useState(isChecked);
@@ -19,7 +20,7 @@ export function Checkbox({isChecked, index, setParentState, parentState}) {
     <label className="paired">
       <span
         className="colorBox"
-        style={{ background: `rgba(4, 42, 2, ${1 - (index / count)})` }}
+        style={{ background: `hsl(${baseHSL[0]} ${baseHSL[1]}% ${baseHSL[2] + (100-baseHSL[2])*index/count}%)` }}
       ></span>
       <input id={index} type="checkbox" checked={isChecked} onChange={onChange}></input>
     </label>
