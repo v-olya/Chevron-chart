@@ -1,0 +1,18 @@
+.colorBox {
+    display: inline-block;
+    margin-right:0.5rem;
+    border-radius: 3px;
+}
+.colorBox, input[type="checkbox"] {
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 22px;
+    min-height: 22px;
+    max-width: 36px;
+    max-height: 36px;
+    vertical-align: middle;
+}
+.paired {
+    display: inline-block;
+    margin: 2.5vw 2.5vw 0 2.5vw;
+}

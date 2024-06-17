@@ -1,57 +1,91 @@
-import { useEffect, useRef} from 'react';
-import styles from '../styles/Chart.module.css';
-import { baseHSL } from '../constants.js';
+import { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import { useMediaQuery } from "../hooks/useMediaQuery.js";
+import { gtMobile } from "../helpers/constants.js";
+import { lightenHSL } from "../helpers/functions.js";
+import styles from "../styles/Chart.module.css";
 
-export function Chart({selections}) {
-  //selections props = full-size array [true, false..., false]
+Chart.propTypes = {
+  selections: PropTypes.arrayOf(PropTypes.bool),
+  // selections = [true, false..., false, ?true]. If ends with 'true', we must increase the total length by 1.
+};
 
-  const selectedOnly = selections.map((checked,i)=> checked ? i+1 : 0).filter(x=>x);
-  const [length, selectedLength] = [selections.length, selectedOnly.length];
+export function Chart({ selections }) {
+  const length = selections.length;
+  const totalLength = selections[length - 1] ? length + 1 : length;
+  const selectedOnly = selections
+    .map((checked, i) => (checked ? i + 1 : 0))
+    .filter((x) => x);
+  const selectedLength = selectedOnly.length;
+
   const ref = useRef(null);
+  const isMobile = useMediaQuery(gtMobile) === false;
 
-  useEffect(()=> {
-    const existingStyle = document.getElementById("chevronChart");
-    const styleTag = existingStyle ? existingStyle : document.createElement("style");
-    styleTag.id = "chevronChart";
+  function getStyleTag(id) {
+    const existingStyle = document.getElementById(id);
+    const style = existingStyle
+      ? existingStyle
+      : document.createElement("style");
+    style.id = id;
+    return style;
+  }
 
-    let chartWidth = ref.current && ref.current.offsetWidth;
-    let chevronWidth = 0;
-    if (chartWidth) {
-      chevronWidth = ref.current.querySelector("div:last-child").offsetWidth;
-    };
+  useEffect(() => {
+    const styleTag = getStyleTag("chevronChart");
 
-    let chevronStyling = `
+    let chartSize =
+      ref.current &&
+      ref.current[`${isMobile ? "offsetHeight" : "offsetWidth"}`];
+    let chevronSize = 0;
+    if (chartSize) {
+      chevronSize = ref.current.querySelector("div:last-child").offsetWidth;
+    }
+
+    let styling = `
       .${styles.chart} div {
         width: calc(100%/${selectedLength});
       }
     `;
-    let color;
-    [0, ...selectedOnly].forEach( i=> {
-      color = i ? `hsl(${baseHSL[0]} ${baseHSL[1]}% ${baseHSL[2] + (100-baseHSL[2])*(i-1)/length}%)`: '#fff';
-      chevronStyling +=`
+    let color, zIndex;
+
+    [0, ...selectedOnly].forEach((i, ind) => {
+      color = i ? lightenHSL(i - 1, totalLength) : "#fff";
+      zIndex = isMobile ? (ind + 1) * 100 : (selectedLength - ind + 1) * 100;
+
+      styling += `
         .${styles.chart} .color_${i} {
-          z-index: ${(selectedLength - i +1)*100};
+          z-index: ${zIndex};
           background: ${color};
         }
         .${styles.chart} .color_${i}::before {
           border-left-color: ${color};
         }
-      `
+      `;
     });
-    if (chartWidth && chartWidth < chevronWidth*(selectedLength)) {
-      chevronStyling +=`
+    if (chartSize && chartSize < chevronSize * selectedLength) {
+      styling += `
         .${styles.chart} {
-          transform: scale(${(chartWidth/(chevronWidth*(selectedLength+1/2)))});
+          transform: scale(${chartSize / (chevronSize * (selectedLength + 1 / 2))});
           transform-origin: left bottom;
         }
       `;
     }
-    styleTag.innerHTML = chevronStyling;
+    styleTag.innerHTML = styling;
     document.head.appendChild(styleTag);
-  }, [selectedLength]);
-  
-  const chart= [0, ...selectedOnly].map(item=> <div key={item} className={`color_${item}`}></div>);
+  }, [selectedLength, isMobile]);
 
-  return <div className={styles.chart} ref={ref}>{chart}</div>;
+  const chart = [0, ...selectedOnly].map((item) => (
+    <div key={item} className={`flex color_${item}`}>
+      {<span>{item ? item : " "}</span>}
+    </div>
+  ));
+
+  return (
+    <div
+      className={`${styles.chart} flex ${isMobile ? `${styles.chart}-mobile` : ""}`}
+      ref={ref}
+    >
+      {chart}
+    </div>
+  );
 }
-

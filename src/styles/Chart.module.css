@@ -1,32 +1,39 @@
-/****** Chevrone cart styling ******/
-
 .chart {
-    display: flex;
     width: 100%;
-    margin: 0 auto;
+    margin: 4rem auto 0 auto;
     box-sizing: border-box;
 }
-.chart div {
-    height: 6rem;
-    padding: 1rem 1rem 1rem 6rem;
+.chart-mobile {
+    flex-direction: column-reverse;
+}
+.chart > div {
     position: relative;
-    box-sizing: border-box;
+    height: 6rem;
+    justify-content: flex-end;
+    align-items: center;
 }
-.chart div:nth-child(1){
+.chart-mobile > div {
+    transform: rotate(90deg);
+}
+.chart > div:first-child{
     width: 0;
     margin: 0;
     padding: 0;
 }
-.chart div:last-of-type {
+.chart > div:last-child {
     margin-right: 3rem;
 }
-.chart div::before, .chart div:not(:nth-child(1))::after {
+.chart > div::before, .chart > div:not(:first-child)::after {
     content: '';
     position: absolute;
     border: 3rem solid transparent;
     top: 0;
     right: -5.95rem;
 }
-.chart div:nth-child(1) {
+.chart > div:first-child {
     background: #fff;
+}
+.chart.chart-mobile div:first-child {
+    order: 1;
+    z-index: 1000000;
 }
