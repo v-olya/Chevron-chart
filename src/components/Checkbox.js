@@ -4,10 +4,10 @@ import { lightenHSL } from "../helpers/functions.js";
 import styles from "../styles/Checkbox.module.css";
 
 Checkbox.propTypes = {
-  isChecked: PropTypes.bool,
-  index: PropTypes.number,
-  setParentState: PropTypes.func,
-  parentState: PropTypes.arrayOf(PropTypes.bool),
+  isChecked: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+  setParentState: PropTypes.func.isRequired,
+  parentState: PropTypes.arrayOf(PropTypes.bool).isRequired,
 };
 
 export function Checkbox({ isChecked, index, setParentState, parentState }) {

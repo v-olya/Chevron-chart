@@ -6,7 +6,7 @@ import { lightenHSL } from "../helpers/functions.js";
 import styles from "../styles/Chart.module.css";
 
 Chart.propTypes = {
-  selections: PropTypes.arrayOf(PropTypes.bool),
+  selections: PropTypes.arrayOf(PropTypes.bool).isRequired,
   // selections = [true, false..., false, ?true]. If ends with 'true', we must increase the total length by 1.
 };
 

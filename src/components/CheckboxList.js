@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { Checkbox } from "./Checkbox.js";
 
 CheckboxList.propTypes = {
-  selections: PropTypes.arrayOf(PropTypes.bool),
-  setSelections: PropTypes.func,
+  selections: PropTypes.arrayOf(PropTypes.bool).isRequired,
+  setSelections: PropTypes.func.isRequired,
   // selections = [true, false..., false, ?true]. If ends with "true", we must add "false" to the end
 };
 
