@@ -7,7 +7,7 @@ export function App() {
   const [selections, setSelections] = useState([true]);
 
   return (
-    <main className="container">
+    <main className="container flex flex-col">
       <h1 className="txt-c">
         A bunch of checkboxes with at least one selected
       </h1>
@@ -23,7 +23,7 @@ export function App() {
             </h3>
           }
         >
-          <Chart selections={selections} />
+          <Chart selections={selections}/>
         </ErrorBoundary>
       </ErrorBoundary>
     </main>

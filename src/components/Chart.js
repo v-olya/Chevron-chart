@@ -41,16 +41,12 @@ export function Chart({ selections }) {
       chevronSize = ref.current.querySelector("div:last-child").offsetWidth;
     }
 
-    let styling = `
-      .${styles.chart} div {
-        width: calc(100%/${selectedLength});
-      }
-    `;
+    let styling = "";
     let color, zIndex;
 
     [0, ...selectedOnly].forEach((i, ind) => {
       color = i ? lightenHSL(i - 1, totalLength) : "#fff";
-      zIndex = isMobile ? (ind + 1) * 100 : (selectedLength - ind + 1) * 100;
+      zIndex = (selectedLength - ind + 1) * 100;
 
       styling += `
         .${styles.chart} .color_${i} {
@@ -62,14 +58,6 @@ export function Chart({ selections }) {
         }
       `;
     });
-    if (chartSize && chartSize < chevronSize * selectedLength) {
-      styling += `
-        .${styles.chart} {
-          transform: scale(${chartSize / (chevronSize * (selectedLength + 1 / 2))});
-          transform-origin: left bottom;
-        }
-      `;
-    }
     styleTag.innerHTML = styling;
     document.head.appendChild(styleTag);
   }, [selectedLength, isMobile]);

@@ -6,6 +6,7 @@ body {
     max-width: 960px;
     height: calc(100vh - 2.5rem);
     box-sizing: border-box;
+    overflow-y: overlay;
     margin: 2.5rem auto;
     padding: 2.5rem 4rem;
     background-color: #fff;
@@ -19,6 +20,9 @@ h1 {
 }
 .flex {
     display: flex;
+}
+.flex-col {
+    flex-direction: column;
 }
 .txt-c {
     text-align: center;
