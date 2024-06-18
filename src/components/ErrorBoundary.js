@@ -26,4 +26,4 @@ ErrorBoundary.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-}
+};

@@ -27,13 +27,11 @@
     top: -2.5rem;
     font-size: .9em;
 }
-.chart-mobile > *::before, .chart-mobile > *::after  {
-    transform: rotate(-90deg);
-}
 .chart > *:first-child{
     width: 0;
     margin: 0;
     padding: 0;
+    background: #fff;
 }
 .chart > *:not(:first-child) {
     flex: 1 1 0;
@@ -50,6 +48,9 @@
     top: -5.95rem;
     right: 0;
 }
-.chart > *:first-child {
-    background: #fff;
+.chart-mobile > *::before, .chart-mobile > *::after  {
+    transform: rotate(-90deg);
+}
+.chart-mobile > *:first-child::before {
+    transform: translateX(calc(50dvw - 2rem)) rotate(-90deg);
 }

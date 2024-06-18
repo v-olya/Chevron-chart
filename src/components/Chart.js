@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useMediaQuery } from "../hooks/useMediaQuery.js";
 import { gtMobile } from "../helpers/constants.js";
@@ -18,7 +18,6 @@ export function Chart({ selections }) {
     .filter((x) => x);
   const selectedLength = selectedOnly.length;
 
-  const ref = useRef(null);
   const isMobile = useMediaQuery(gtMobile) === false;
 
   function getStyleTag(id) {
@@ -32,14 +31,6 @@ export function Chart({ selections }) {
 
   useEffect(() => {
     const styleTag = getStyleTag("chevronChart");
-
-    let chartSize =
-      ref.current &&
-      ref.current[`${isMobile ? "offsetHeight" : "offsetWidth"}`];
-    let chevronSize = 0;
-    if (chartSize) {
-      chevronSize = ref.current.querySelector("div:last-child").offsetWidth;
-    }
 
     let styling = "";
     let color, zIndex;
@@ -60,7 +51,7 @@ export function Chart({ selections }) {
     });
     styleTag.innerHTML = styling;
     document.head.appendChild(styleTag);
-  }, [selectedLength, isMobile]);
+  }, [selectedLength]);
 
   const chart = [0, ...selectedOnly].map((item) => (
     <div key={item} className={`flex color_${item}`}>
@@ -71,7 +62,6 @@ export function Chart({ selections }) {
   return (
     <div
       className={`${styles.chart} flex ${isMobile ? `${styles.chart}-mobile` : ""}`}
-      ref={ref}
     >
       {chart}
     </div>

@@ -4,8 +4,8 @@
     border-radius: 3px;
 }
 .colorBox, input[type="checkbox"] {
-    width: 4vh;
-    height: 4vh;
+    width: 4dvh;
+    height: 4dvh;
     min-width: 22px;
     min-height: 22px;
     max-width: 36px;
@@ -14,5 +14,5 @@
 }
 .paired {
     display: inline-block;
-    margin: 4vh 4vh 0 4vh;
+    margin: 4dvh 4dvh 0 4dvh;
 }

@@ -1,12 +1,12 @@
 body {
     background: url('assets/sky.jpg');
-    height: 100vh;
+    height: 100dvh;
 }
 .container {
     max-width: 960px;
-    height: calc(100vh - 2.5rem);
+    height: calc(100dvh - 2.5rem);
+    overflow: auto;
     box-sizing: border-box;
-    overflow-y: overlay;
     margin: 2.5rem auto;
     padding: 2.5rem 4rem;
     background-color: #fff;

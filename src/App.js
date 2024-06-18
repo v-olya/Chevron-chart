@@ -17,13 +17,14 @@ export function App() {
         <CheckboxList selections={selections} setSelections={setSelections} />
         <ErrorBoundary
           fallback={
-            <h3 className="txt-c"> <br/>
+            <h3 className="txt-c">
+              <br />
               <b className="red">We are sorry</b>,&nbsp; but the chevron chart
               broke.
             </h3>
           }
         >
-          <Chart selections={selections}/>
+          <Chart selections={selections} />
         </ErrorBoundary>
       </ErrorBoundary>
     </main>
