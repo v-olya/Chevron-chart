@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { lightenHSL } from "../helpers/functions.js";
-import styles from "../styles/Checkbox.module.css";
+import * as styles from "../styles/Checkbox.module.css";
 
 Checkbox.propTypes = {
   isChecked: PropTypes.bool.isRequired,

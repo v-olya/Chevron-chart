@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useMediaQuery } from "../hooks/useMediaQuery.js";
 import { gtMobile } from "../helpers/constants.js";
 import { lightenHSL } from "../helpers/functions.js";
-import styles from "../styles/Chart.module.css";
+import * as styles from "../styles/Chart.module.css";
 
 Chart.propTypes = {
   selections: PropTypes.arrayOf(PropTypes.bool).isRequired,
