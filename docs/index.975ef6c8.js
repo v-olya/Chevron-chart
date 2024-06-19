@@ -28215,13 +28215,13 @@ const lightenHSL = (index, length)=>`hsl(${hue} ${satur}% ${light + (100 - light
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "baseHSL", ()=>baseHSL);
-parcelHelpers.export(exports, "gtMobile", ()=>gtMobile);
+parcelHelpers.export(exports, "mobile", ()=>mobile);
 const baseHSL = [
     125,
     60,
     10
 ];
-const gtMobile = "(min-width: 768px)";
+const mobile = "(max-width: 480px)";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -28423,7 +28423,7 @@ function Chart({ selections }) {
     const totalLength = selections[length - 1] ? length + 1 : length;
     const selectedOnly = selections.map((checked, i)=>checked ? i + 1 : 0).filter((x)=>x);
     const selectedLength = selectedOnly.length;
-    const isMobile = (0, _useMediaQueryJs.useMediaQuery)((0, _constantsJs.gtMobile)) === false;
+    const isMobile = (0, _useMediaQueryJs.useMediaQuery)((0, _constantsJs.mobile));
     function getStyleTag(id) {
         const existingStyle = document.getElementById(id);
         const style = existingStyle ? existingStyle : document.createElement("style");
@@ -28481,7 +28481,7 @@ function Chart({ selections }) {
         columnNumber: 5
     }, this);
 }
-_s(Chart, "NklClpDoGkeeKLoQvqwtn5FsfEg=", false, function() {
+_s(Chart, "/UAohPiFGnmX24lUncA3Y3eyQsQ=", false, function() {
     return [
         (0, _useMediaQueryJs.useMediaQuery)
     ];

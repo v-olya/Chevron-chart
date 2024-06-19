@@ -83,6 +83,6 @@
 }
 
 .K3BdnG_chart-mobile > :first-child:before {
-  transform: translateX(calc(50dvw - 2rem))rotate(-90deg);
+  transform: translateX(calc(50dvw - 25px))rotate(-90deg);
 }
 /*# sourceMappingURL=index.2212206d.css.map */
