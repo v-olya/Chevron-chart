@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useMediaQuery } from "../hooks/useMediaQuery.js";
-import { gtMobile } from "../helpers/constants.js";
+import { mobile } from "../helpers/constants.js";
 import { lightenHSL } from "../helpers/functions.js";
 import * as styles from "../styles/Chart.module.css";
 
@@ -18,7 +18,7 @@ export function Chart({ selections }) {
     .filter((x) => x);
   const selectedLength = selectedOnly.length;
 
-  const isMobile = useMediaQuery(gtMobile) === false;
+  const isMobile = useMediaQuery(mobile);
 
   function getStyleTag(id) {
     const existingStyle = document.getElementById(id);
