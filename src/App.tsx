@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { CheckboxList } from "./components/CheckboxList.js";
-import { Chart } from "./components/Chart.js";
-import { ErrorBoundary } from "./components/ErrorBoundary.js";
+import { CheckboxList } from "./components/CheckboxList";
+import { Chart } from "./components/Chart";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 export function App() {
   const [selections, setSelections] = useState([true]);

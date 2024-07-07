@@ -1,21 +1,27 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
-import { lightenHSL } from "../helpers/functions.js";
+import React, { useState } from "react";
+import { lightenHSL } from "../helpers/functions";
 import * as styles from "../styles/Checkbox.module.css";
 
-Checkbox.propTypes = {
-  isChecked: PropTypes.bool.isRequired,
-  index: PropTypes.number.isRequired,
-  setParentState: PropTypes.func.isRequired,
-  parentState: PropTypes.arrayOf(PropTypes.bool).isRequired,
-};
+type Selections = Array<boolean>;
 
-export function Checkbox({ isChecked, index, setParentState, parentState }) {
+interface Props {
+  isChecked: boolean;
+  index: number;
+  setParentState: React.Dispatch<React.SetStateAction<Selections>>;
+  parentState: Selections;
+}
+
+export function Checkbox({
+  isChecked,
+  index,
+  setParentState,
+  parentState,
+}: Props): JSX.Element {
   const [checked, setChecked] = useState(isChecked);
   const listOfStates = [...parentState];
   const length = parentState.length;
   const count = parentState[length - 1] ? length + 1 : length;
-  const onChange = () => {
+  const onChange = (): void => {
     listOfStates[index] = !checked;
     if (!listOfStates.find((x) => x)) {
       listOfStates[index] = checked;
@@ -35,7 +41,7 @@ export function Checkbox({ isChecked, index, setParentState, parentState }) {
         style={{ background: lightenHSL(index, count) }}
       ></span>
       <input
-        id={index}
+        id={index + ""}
         type="checkbox"
         checked={isChecked}
         onChange={onChange}
