@@ -1,0 +1,56 @@
+.chart {
+    width: 100%;
+    margin: 4rem auto 0 auto;
+    padding-right: 3rem;
+    box-sizing: border-box;
+}
+.chart-mobile {
+    flex-direction: column-reverse;
+    max-height: 100%;
+    margin-top: 6rem;
+    padding-right: 0;
+    flex: 1 1 0;
+}
+.chart > * {
+    position: relative;
+    align-items: center;
+    height: 6rem;
+    justify-content: flex-end;
+}
+.chart > *:first-child{
+    width: 0;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+}
+.chart > *:not(:first-child) {
+    flex: 1 1 0;
+    align-self: center;
+}
+.chart-mobile > * {
+    height: unset;
+    width: 6rem;
+    justify-content: center;
+}
+.chart > *::before, .chart > *:not(:first-child)::after {
+    content: '';
+    position: absolute;
+    border: 3rem solid transparent;
+    top: 0;
+    right: -5.95rem;
+}
+.chart-mobile > *::before, .chart-mobile > *:not(:first-child)::after {
+    top: -5.95rem;
+    right: 0;
+}
+.chart-mobile > *::before, .chart-mobile > *::after  {
+    transform: rotate(-90deg);
+}
+.chart-mobile > *:first-child::before {
+    transform: translateX(calc(50dvw - 25px)) rotate(-90deg);
+}
+.chart-mobile > * > span {
+    position: relative;
+    top: -2.5rem;
+    font-size: .9em;
+}
