@@ -1,6 +1,5 @@
 {
   "name": "chevron-chart",
-  "homepage": "https://v-olya.github.io",
   "scripts": {
     "start": "parcel src/index.html --open",
     "tsc": "tsc --noEmit",
